@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game_app/constants.dart';
-import 'package:flutter_game_app/customviews/banner_view.dart';
-import 'package:flutter_game_app/customviews/custom_grid.dart';
+import 'package:flutter_game_app/customviews/banner_header.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'constants.dart';
+import 'customviews/banner_view.dart';
+import 'customviews/custom_grid.dart';
 import 'dart:math' as math;
 
-import 'package:flutter_game_app/customviews/triangle.dart';
+import 'customviews/triangle.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -25,121 +27,70 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2E9B91),
+      backgroundColor: bgColor,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
         child: Stack(
           children: [
-            Align(
+            const Align(
               alignment: Alignment.topCenter,
-              child: SizedBox(
-                height: 100,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomPaint(
-                            painter: BannerView(side: Side.Left),
-                            child: const SizedBox(
-                              width: 80,
-                              height: 56,
-                            ),
-                          ),
-                          CustomPaint(
-                            painter: BannerView(side: Side.Right),
-                            child: const SizedBox(
-                              width: 80,
-                              height: 56,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 56,
-                              color: bannerColor,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomPaint(
-                                  painter: Triangle(side: Side.Left),
-                                  child: const SizedBox(
-                                    width: 44,
-                                    height: 44,
-                                  ),
-                                ),
-                                CustomPaint(
-                                  painter: Triangle(side: Side.Right),
-                                  child: const SizedBox(
-                                    width: 44,
-                                    height: 44,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              child: BannerHeader(),
             ),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(54, 0, 57, 0),
+                padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: SizedBox(
-                  height: 56,
+                  height: 64,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: redColor,
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 36,
+                                height: 36,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 2, color: Colors.black),
+                                  shape: BoxShape.circle,
+                                  color: redColor,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Text('Player 1')
-                          ],
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Expanded(
+                                  child: Text(
+                                'darkNessII',
+                                style: GoogleFonts.macondo(fontSize: 12),
+                              ))
+                            ],
+                          ),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text('Player 2'),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: redColor,
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Text('xxxWarriorxxx',
+                                      style:
+                                          GoogleFonts.macondo(fontSize: 12))),
+                              const SizedBox(
+                                width: 5,
                               ),
-                            ),
-                          ],
+                              Container(
+                                width: 36,
+                                height: 36,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: redColor,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -148,11 +99,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 120.0),
+                child: Text(
+                  'Your Turn',
+                  style: GoogleFonts.macondo(fontSize: 20, color: Colors.white),
+                ),
+              ),
+            ),
+            Align(
               alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Container(
-                  height: 400,
+                  height: MediaQuery.of(context).size.width - 32,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -196,7 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Transform.rotate(
                 angle: math.pi / 2,
                 child: Container(
-                  height: 400,
+                  height: (MediaQuery.of(context).size.width - 32) + 50,
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -235,19 +197,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Opacity(
-              opacity: 0,
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    height: 106 * 4,
-                    color: Colors.black.withOpacity(.4),
-                  ),
-                ),
-              ),
-            ),
             Align(
               alignment: Alignment.center,
               child: GridView.count(
@@ -260,14 +209,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     25,
                     (index) => Padding(
                           padding:
-                              const EdgeInsets.only(left: 6.0, bottom: 4.0),
+                              const EdgeInsets.only(left: 0.0, bottom: 0.0),
                           child: InkWell(
                             onTap: () => print(index),
-                            child: const SizedBox(
-                              child: Center(
-                                child: Icon(
-                                  Icons.close_outlined,
-                                  color: Colors.white,
+                            child: Container(
+                              color: index % 2 == 0
+                                  ? Colors.black.withOpacity(.0)
+                                  : Colors.transparent,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left:6.0,bottom: 8.0),
+                                child: Center(
+                                  child: Icon(
+                                    index % 2 == 0
+                                        ? Icons.circle_outlined
+                                        : Icons.close_outlined,
+                                        size: 36,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
@@ -281,29 +239,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 painter: BannerView(side: Side.Both),
                 child: SizedBox(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 64,
-                          height: 64,
-                          color: Colors.redAccent,
+                          width: BOTTOM_ICON_SIZE,
+                          height: BOTTOM_ICON_SIZE,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.redAccent,
+                          ),
                         ),
                         Container(
-                          width: 64,
-                          height: 64,
-                          color: Colors.yellowAccent,
+                          width: BOTTOM_ICON_SIZE,
+                          height: BOTTOM_ICON_SIZE,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.yellowAccent,
+                          ),
                         ),
                         Container(
-                          width: 64,
-                          height: 64,
-                          color: Colors.greenAccent,
+                          width: BOTTOM_ICON_SIZE,
+                          height: BOTTOM_ICON_SIZE,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.greenAccent,
+                          ),
                         ),
                         Container(
-                          width: 64,
-                          height: 64,
-                          color: Colors.blueAccent,
+                          width: BOTTOM_ICON_SIZE,
+                          height: BOTTOM_ICON_SIZE,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blueAccent,
+                          ),
                         ),
                       ],
                     ),
@@ -311,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 64,
                 ),
               ),
-            )
+            ),
           ],
         ),
       )),

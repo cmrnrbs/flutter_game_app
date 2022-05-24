@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game_app/constants.dart';
+
+import '../constants.dart';
 
 class Triangle extends CustomPainter {
   final Side side;
