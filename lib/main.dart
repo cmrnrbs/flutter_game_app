@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Expanded(
                                   child: Text('xxxWarriorxxx',
+                                      textAlign: TextAlign.right,
                                       style:
                                           GoogleFonts.macondo(fontSize: 12))),
                               const SizedBox(
@@ -217,13 +218,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Colors.black.withOpacity(.0)
                                   : Colors.transparent,
                               child: Padding(
-                                padding: const EdgeInsets.only(left:6.0,bottom: 8.0),
+                                padding: const EdgeInsets.only(
+                                    left: 6.0, bottom: 8.0),
                                 child: Center(
                                   child: Icon(
                                     index % 2 == 0
                                         ? Icons.circle_outlined
                                         : Icons.close_outlined,
-                                        size: 36,
+                                    size: 36,
                                     color: Colors.white,
                                   ),
                                 ),
